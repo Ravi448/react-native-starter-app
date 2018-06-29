@@ -1,12 +1,130 @@
 import React, { Component } from 'react';
+import {ScrollView,StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { Text } from 'native-base';
+import { Text, Container, Header, Left, Body, Right, Button, Form, Item, Label, Content, Input, ListItem, Radio, DatePicker } from 'native-base';
 export default class Signup extends Component{
     render(){
         return(
-            <Text>
-                Text
-            </Text>
+            <Container>
+                <Header style={{backgroundColor:'#e6ecff'}}>
+                    <Left>
+                        <Button
+                            transparent
+                            onPress={()=>this.props.navigation.goBack()}
+                        >
+                            <Icon name="arrow-back" size={26} />
+                        </Button>
+                    </Left>
+                    <Body>
+                        <Text>Signup</Text>
+                    </Body>
+                    <Right/>
+                </Header>
+                <ScrollView>
+                    <Content>
+                        <Form>
+                            <Item floatingLabel style={styles.itemStyle}>
+                                <Label>Your Name</Label>    
+                                <Input
+                                    style={styles.inputStyle}
+                                />
+                            </Item>
+                            <Item floatingLabel style={styles.itemStyle}>
+                                <Label>Your Email</Label>    
+                                <Input
+                                    style={styles.inputStyle}
+                                    keyboardType="email-address"
+                                />
+                            </Item>
+                            <Item floatingLabel style={styles.itemStyle}>
+                                <Label>Your Phone</Label>    
+                                <Input
+                                    style={styles.inputStyle}
+                                    keyboardType="phone-pad"
+                                    maxLength={10}
+                                />
+                            </Item>
+                            <Item floatingLabel style={styles.itemStyle}>
+                                <Label>Create Password</Label>    
+                                <Input
+                                    style={styles.inputStyle}
+                                    secureTextEntry={true}
+                                    maxLength={25}
+                                />
+                            </Item>
+                            <Item floatingLabel style={styles.itemStyle}>
+                                <Label>Confirm Password</Label>    
+                                <Input
+                                    style={styles.inputStyle}
+                                    secureTextEntry={true}
+                                    maxLength={25}
+                                />
+                            </Item>
+                            <Label style={{marginLeft:20}}>Date of birth:</Label>
+                            <DatePicker
+                                defaultDate={new Date(2018, 4, 4)}
+                                minimumDate={new Date(2018, 1, 1)}
+                                maximumDate={new Date(2018, 12, 31)}
+                                locale={"en"}
+                                timeZoneOffsetInMinutes={undefined}
+                                modalTransparent={false}
+                                animationType={"fade"}
+                                androidMode={"default"}
+                                placeHolderText=" "
+                                placeHolderTextStyle={{ color: "#d3d3d3" }}
+                                style={{marginLeft:20,paddingLeft: 20}}
+                            />
+                            <Item style={styles.itemBtnGrp}>
+                                <Button 
+                                    full
+                                    rounded={true}
+                                    style={styles.btnLogin}
+                                >
+                                    <Text style={{fontSize:18}}>Signup</Text>
+                                </Button>
+                            </Item>
+                        </Form>
+                        <Item style={styles.itemBtnGrp}>
+                            <Button 
+                                transparent
+                                full
+                                style={styles.btnEtc}
+                                onPress={()=>this.props.navigation.goBack()}
+                            >
+                                <Text style={{fontSize:18}}><Icon name="arrow-back" /> Back to Login </Text>
+                                
+                            </Button>
+                        </Item>
+                    </Content>
+                </ScrollView>
+            </Container>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    inputStyle:{
+        color:'#002233',
+        fontSize: 20,
+    },
+    itemStyle:{
+        marginVertical: 10,
+        borderBottomColor: '#0000b3',
+        marginRight: 20,
+    },
+    labelStyle:{
+        color:'#00111a'
+    },
+    itemBtnGrp:{
+        borderBottomColor:'transparent',
+        marginEnd:20,
+        marginTop:10
+    },
+    btnLogin:{
+        backgroundColor:'#0000b3',
+        flex:1
+    },
+    btnEtc:{
+        flex:1
+    }
+})
