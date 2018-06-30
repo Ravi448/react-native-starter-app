@@ -1,5 +1,8 @@
 # react-native-starter-app
-React Native Mobile Demo App
+
+<strong>
+  This is a demo app demonstrating how to make an app using react-native. This is still in development and you can make pull     reaquests. Changes and suggestions are welcome.  
+</strong>
 
 To run this project first install react-native CLI <br/>
 Run <code>npm install -g create-react-native-app</code>
