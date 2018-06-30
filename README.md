@@ -15,3 +15,12 @@ Run <code>react-native run-android</code><br/>
 
 To run on iOS, You must have to install Xcode on your mac.<br/>
 Run <code>rect-native run-ios</code>
+
+
+
+
+
+<information>
+Author:  Ravi K Maurya
+Standard Licence:  MIT
+</information>
