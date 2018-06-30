@@ -26,7 +26,7 @@ Run <code>rect-native run-ios</code>
 <br/>
 
 <pre>
-Author :  <caption>Ravi K Maurya<caption>
+Author :  <caption>Ravi KUMAR<caption>
 Standard Licence:  <code>MIT</code>
 Privacy : NONE
 Usablity: Everyone
