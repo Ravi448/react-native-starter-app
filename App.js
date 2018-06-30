@@ -6,7 +6,7 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,YellowBox
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 // Pages
@@ -14,7 +14,10 @@ import Main from './src/screens/main';
 import Login from './src/screens/login';
 import Signup from './src/screens/signup';
 import ForgotPassword from './src/screens/forgotPassword';
+import Profile from './src/screens/profile';
 
+YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated'])
+YellowBox.ignoreWarnings(['Warning: Module RCTImageLoader requires'])
 
 export default class App extends Component {
   render() {
@@ -61,7 +64,8 @@ const AppNavigator = createStackNavigator({
 
   Login:{screen:Login},
   Signup:{screen:Signup},
-  ForgotPassword:{screen:ForgotPassword}
+  ForgotPassword:{screen:ForgotPassword},
+  Profile:{screen:Profile}
 },{
   initialRouteKey:'Drawer',
   headerMode:'none'

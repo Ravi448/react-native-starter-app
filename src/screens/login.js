@@ -1,8 +1,31 @@
 import React, { Component } from 'react';
-import {ScrollView,StyleSheet} from 'react-native';
+import {ScrollView,StyleSheet,AsyncStorage} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Text, Container, Header, Left, Button, Body, Right, Content, View, Form, Input, Item, Label } from 'native-base';
 export default class Login extends Component{
+    constructor(props){
+        super(props)
+        this.state = {email:'',password:''}
+    }
+    formSubmit(){
+        if(!this.validateEmail()){alert('Input email is not valid!');return false}
+        if(this.state.password.length == 0){alert('Please enter valid password!');return false}
+        AsyncStorage.setItem('@user:creds',JSON.stringify(this.state),()=>{
+            this.props.navigation.pop();
+        });
+    }
+
+    validateEmail(){
+        let email = this.state.email;
+        if(email.length==0)
+            return false;
+        if(email.indexOf('@') == -1)
+            return false;
+        if(email.indexOf('.',email.indexOf('@')) == -1)
+            return false;
+        return true;
+    }
+
     render(){
         return(
             <Container>
@@ -29,6 +52,8 @@ export default class Login extends Component{
                                     <Input 
                                         keyboardType="email-address"
                                         style={styles.inputStyle}
+                                        onChangeText={(txt)=>this.setState({email:txt})}
+                                        value={this.state.email}
                                     />
                                 </Item>
                                 <Item floatingLabel style={styles.itemStyle}>
@@ -38,6 +63,8 @@ export default class Login extends Component{
                                         maxLength={25}
                                         keyboardType="email-address"
                                         style={styles.inputStyle}
+                                        onChangeText={(t)=>this.setState({password:t})}
+                                        value={this.state.password}
                                     />
                                 </Item>
                                 <Item style={styles.itemBtnGrp}>
@@ -45,6 +72,7 @@ export default class Login extends Component{
                                         full
                                         rounded={true}
                                         style={styles.btnLogin}
+                                        onPress={()=>this.formSubmit()}
                                     >
                                         <Text style={{fontSize:18}}>Login</Text>
                                     </Button>

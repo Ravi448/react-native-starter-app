@@ -1,9 +1,25 @@
 import React, { Component } from 'react';
-import {StyleSheet,ScrollView} from 'react-native';
+import {StyleSheet,ScrollView,AsyncStorage} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Text, Container, Header, Left, Button, Body, Right, Content } from 'native-base';
 
 export default class Main extends Component{
+    constructor(props){
+        super(props)
+        this.state = {logged:false}
+        AsyncStorage.getItem('@user:creds',(e,s)=>{
+            this.state.logged = true;
+            console.log(JSON.parse(s));
+        })
+    }
+
+    navigteToAccount(){
+        if(this.state.logged)
+            this.props.navigation.navigate('Profile');
+        else
+            this.props.navigation.navigate('Login');
+    }
+
     render(){
         return(
             <Container>
@@ -22,7 +38,7 @@ export default class Main extends Component{
                     <Right>
                         <Button
                             transparent
-                            onPress={()=>this.props.navigation.navigate('Login')}
+                            onPress={()=>this.navigteToAccount()}
                         >
                             <Icon name="account-circle" size={26} color="#0000b3" />
                         </Button>
