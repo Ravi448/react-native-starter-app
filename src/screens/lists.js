@@ -47,7 +47,7 @@ export default class Lists extends Component{
                     <Left>
                         <Button
                             transparent
-                            onPress={()=>this.props.navigation.pop()}
+                            onPress={()=>this.props.navigation.goBack()}
                         >
                             <Icon name="arrow-back" size={26} color="#0000b3" />
                         </Button>

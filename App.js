@@ -58,7 +58,11 @@ const CustomDrawerContentComponent = (props) => (
 const Drawer = createDrawerNavigator({
     Main:{screen:Main,navigationOptions:{
       drawerLabel:()=>'Home'
-    }}
+    }},
+    Profile:{screen:Profile},
+    Webview:{screen:WebView},
+    Lists:{screen:Lists},
+    Apicall:{screen:Apicall}
 },{
   initialRouteName:'Main',
   drawerPosition:'left',
