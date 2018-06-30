@@ -39,7 +39,7 @@ const CustomDrawerContentComponent = (props) => (
         <Image
           style={styles.drawerImage}
           source={require('./assets/logo.png')}
-          resizeMode
+
         />
       </View>
       <View style={{backgroundColor:'#fff'}}> 
