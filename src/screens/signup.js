@@ -1,8 +1,41 @@
 import React, { Component } from 'react';
-import {ScrollView,StyleSheet} from 'react-native';
+import {ScrollView,StyleSheet,AsyncStorage} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Text, Container, Header, Left, Body, Right, Button, Form, Item, Label, Content, Input, ListItem, Radio, DatePicker } from 'native-base';
 export default class Signup extends Component{
+
+    constructor(props){
+        super(props)
+        this.state = {
+            name:'',
+            email:'',
+            phone:'',
+            password:'',
+            cPass:'',
+            dob:''
+        }
+    }
+
+    formSubmit(){
+        if(!this.validateEmail()){alert('Input email is not valid!');return false}
+        if(this.state.password.length == 0){alert('Please enter valid password!');return false}
+        if(this.state.password != this.state.cPass){alert('Password did not match!');return false}
+        AsyncStorage.setItem('@user:creds',JSON.stringify(this.state),()=>{
+            this.props.navigation.replace('Drawer');
+        });
+    }
+
+    validateEmail(){
+        let email = this.state.email;
+        if(email.length==0)
+            return false;
+        if(email.indexOf('@') == -1)
+            return false;
+        if(email.indexOf('.',email.indexOf('@')) == -1)
+            return false;
+        return true;
+    }
+
     render(){
         return(
             <Container>
@@ -27,6 +60,7 @@ export default class Signup extends Component{
                                 <Label>Your Name</Label>    
                                 <Input
                                     style={styles.inputStyle}
+                                    onChangeText={(t)=>this.setState({name:t})}
                                 />
                             </Item>
                             <Item floatingLabel style={styles.itemStyle}>
@@ -34,6 +68,7 @@ export default class Signup extends Component{
                                 <Input
                                     style={styles.inputStyle}
                                     keyboardType="email-address"
+                                    onChangeText={(t)=>this.setState({email:t})}
                                 />
                             </Item>
                             <Item floatingLabel style={styles.itemStyle}>
@@ -42,6 +77,7 @@ export default class Signup extends Component{
                                     style={styles.inputStyle}
                                     keyboardType="phone-pad"
                                     maxLength={10}
+                                    onChangeText={(t)=>this.setState({phone:t})}
                                 />
                             </Item>
                             <Item floatingLabel style={styles.itemStyle}>
@@ -50,6 +86,7 @@ export default class Signup extends Component{
                                     style={styles.inputStyle}
                                     secureTextEntry={true}
                                     maxLength={25}
+                                    onChangeText={(t)=>this.setState({password:t})}
                                 />
                             </Item>
                             <Item floatingLabel style={styles.itemStyle}>
@@ -58,6 +95,7 @@ export default class Signup extends Component{
                                     style={styles.inputStyle}
                                     secureTextEntry={true}
                                     maxLength={25}
+                                    onChangeText={(t)=>this.setState({cPass:t})}
                                 />
                             </Item>
                             <Label style={{marginLeft:20}}>Date of birth:</Label>
@@ -73,12 +111,14 @@ export default class Signup extends Component{
                                 placeHolderText=" "
                                 placeHolderTextStyle={{ color: "#d3d3d3" }}
                                 style={{marginLeft:20,paddingLeft: 20}}
+                                onDateChange={(t)=>this.setState({dob:t})}
                             />
                             <Item style={styles.itemBtnGrp}>
                                 <Button 
                                     full
                                     rounded={true}
                                     style={styles.btnLogin}
+                                    onPress={()=>this.formSubmit()}
                                 >
                                     <Text style={{fontSize:18}}>Signup</Text>
                                 </Button>

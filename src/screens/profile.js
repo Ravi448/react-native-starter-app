@@ -1,11 +1,23 @@
 import React, { Component } from 'react';
 import {StyleSheet,AsyncStorage} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { Text, Container, Header, Left, Button, Body, Right, Content, Form, Item, Label, Input } from 'native-base';
+import { Text, Container, Header, Left, Button, Body, Right, Content, Form, Item, Label, Input, View, Grid, Row, Col } from 'native-base';
 export default class Profile extends Component{
+    constructor(props){
+        super(props)
+    }
+
+    componentWillMount(){
+        this.values = {}
+        AsyncStorage.getItem('@user:creds',(e,s)=>{
+            if(s)
+                this.values = JSON.parse(s);
+        });
+    }
+
     logout(){
         AsyncStorage.clear(()=>{
-            this.props.navigation.pop();
+            this.props.navigation.replace('Drawer');
         });
     }
     render(){
@@ -26,15 +38,41 @@ export default class Profile extends Component{
                     <Right/>
                 </Header>
                 <Content>
-                    <Button
-                        full
-                        transparent
-                        style={styles.btnLogOut}
-                        onPress={()=>this.logout()}
-                    >
-                        <Icon name="arrow-back" color="#ff5050" size={25} />
-                        <Text style={{color:'#ff5050'}} >Logout</Text>
-                    </Button>
+                    <View>
+                        <Grid style={{marginVertical:20,marginHorizontal:20}}>
+                            <Row style={styles.row}>
+                                <Col><Text style={styles.col1}>Name: </Text></Col>
+                                <Col><Text style={styles.col2}>{this.values.name}</Text></Col>
+                            </Row>
+                            <Row style={styles.row}>
+                                <Col><Text style={styles.col1}>Email: </Text></Col>
+                                <Col><Text style={styles.col2}>{this.values.email}</Text></Col>
+                            </Row>
+                            <Row style={styles.row}>
+                                <Col><Text style={styles.col1}>Phone: </Text></Col>
+                                <Col><Text style={styles.col2}>{this.values.phone}</Text></Col>
+                            </Row>
+                            <Row style={styles.row}>
+                                <Col><Text style={styles.col1}>Password: </Text></Col>
+                                <Col><Text style={styles.col2}>{this.values.password}</Text></Col>
+                            </Row>
+                            <Row style={styles.row}>
+                                <Col><Text style={styles.col1}>DOB: </Text></Col>
+                                <Col><Text style={styles.col2}>{this.values.dob}</Text></Col>
+                            </Row>
+                        </Grid>
+                    </View>
+                    <View>
+                        <Button
+                            full
+                            transparent
+                            style={styles.btnLogOut}
+                            onPress={()=>this.logout()}
+                        >
+                            <Icon name="arrow-back" color="#ff5050" size={25} />
+                            <Text style={{color:'#ff5050'}} >Logout</Text>
+                        </Button>
+                    </View>
                 </Content>
             </Container>
         )
@@ -42,31 +80,19 @@ export default class Profile extends Component{
 }
 
 const styles = StyleSheet.create({
-    inputStyle:{
-        color:'#002233',
-        fontSize: 20,
-    },
-    itemStyle:{
-        marginVertical: 10,
-        borderBottomColor: '#0000b3',
-        marginRight: 20,
-    },
-    labelStyle:{
-        color:'#00111a'
-    },
-    itemBtnGrp:{
-        borderBottomColor:'transparent',
-        marginEnd:20,
-        marginTop:10
-    },
-    btnLogin:{
-        backgroundColor:'#0000b3',
-        flex:1
-    },
     btnLogOut:{
         flex:1
     },
-    btnEtc:{
-        flex:1
+    row:{
+        paddingHorizontal: 5,
+        paddingVertical: 10,
+        backgroundColor:'#fff'
+    },
+    col1:{
+        color:'#0000b3',
+        fontSize: 17,
+    },
+    col2:{
+        fontSize: 17
     }
 })

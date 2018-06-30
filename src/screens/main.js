@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {StyleSheet,ScrollView,AsyncStorage} from 'react-native';
+import {StyleSheet,ScrollView,AsyncStorage,componentWillReceiveProps} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Text, Container, Header, Left, Button, Body, Right, Content } from 'native-base';
 
@@ -14,7 +14,6 @@ export default class Main extends Component{
     }
 
     navigteToAccount(){
-        console.log(this.state.logged)
         if(this.state.logged)
             this.props.navigation.navigate('Profile');
         else

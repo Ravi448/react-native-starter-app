@@ -7,11 +7,12 @@ export default class Login extends Component{
         super(props)
         this.state = {email:'',password:''}
     }
+
     formSubmit(){
         if(!this.validateEmail()){alert('Input email is not valid!');return false}
         if(this.state.password.length == 0){alert('Please enter valid password!');return false}
         AsyncStorage.setItem('@user:creds',JSON.stringify(this.state),()=>{
-            this.props.navigation.pop();
+            this.props.navigation.replace('Drawer');
         });
     }
 
