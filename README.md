@@ -18,9 +18,11 @@ Run <code>rect-native run-ios</code>
 
 
 
+<br/>
 
-
-<information>
-Author:  Ravi K Maurya
-Standard Licence:  MIT
-</information>
+<pre>
+Author :  <caption>Ravi K Maurya<caption>
+Standard Licence:  <code>MIT</code>
+Privacy : NONE
+Usablity: Everyone
+</pre>
