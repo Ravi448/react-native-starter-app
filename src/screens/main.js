@@ -8,12 +8,13 @@ export default class Main extends Component{
         super(props)
         this.state = {logged:false}
         AsyncStorage.getItem('@user:creds',(e,s)=>{
-            this.state.logged = true;
-            console.log(JSON.parse(s));
-        })
+            if(s)
+                this.state.logged = true;
+        });
     }
 
     navigteToAccount(){
+        console.log(this.state.logged)
         if(this.state.logged)
             this.props.navigation.navigate('Profile');
         else

@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet,AsyncStorage} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Text, Container, Header, Left, Button, Body, Right, Content, Form, Item, Label, Input } from 'native-base';
 export default class Profile extends Component{
+    logout(){
+        AsyncStorage.clear(()=>{
+            this.props.navigation.pop();
+        });
+    }
     render(){
         return(
             <Container>
@@ -21,7 +26,15 @@ export default class Profile extends Component{
                     <Right/>
                 </Header>
                 <Content>
-                    
+                    <Button
+                        full
+                        transparent
+                        style={styles.btnLogOut}
+                        onPress={()=>this.logout()}
+                    >
+                        <Icon name="arrow-back" color="#ff5050" size={25} />
+                        <Text style={{color:'#ff5050'}} >Logout</Text>
+                    </Button>
                 </Content>
             </Container>
         )
@@ -48,6 +61,9 @@ const styles = StyleSheet.create({
     },
     btnLogin:{
         backgroundColor:'#0000b3',
+        flex:1
+    },
+    btnLogOut:{
         flex:1
     },
     btnEtc:{
