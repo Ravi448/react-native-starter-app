@@ -5,14 +5,16 @@ import { Text, Container, Header, Left, Button, Body, Right, Content, Form, Item
 export default class Profile extends Component{
     constructor(props){
         super(props)
-        this.values = {}
+        this.state = {
+            data:{},
+            loading:true
+        }
     }
 
-    componentWillMount(){
+    componentDidMount(){
         AsyncStorage.getItem('@user:creds',(e,s)=>{
             if(s)
-                this.values = JSON.parse(s);
-            console.log(this.values)
+                this.setState({data:JSON.parse(s),loading:false})
         });
     }
 
@@ -22,6 +24,9 @@ export default class Profile extends Component{
         });
     }
     render(){
+        if(this.state.loading){
+            return 'Please wait';
+        }
         return(
             <Container>
                 <Header style={{backgroundColor:'#e6ecff'}}>
@@ -43,23 +48,23 @@ export default class Profile extends Component{
                         <Grid style={{marginVertical:20,marginHorizontal:20}}>
                             <Row style={styles.row}>
                                 <Col><Text style={styles.col1}>Name: </Text></Col>
-                                <Col><Text style={styles.col2}>{this.values.name}</Text></Col>
+                                <Col><Text style={styles.col2}>{this.state.data.name}</Text></Col>
                             </Row>
                             <Row style={styles.row}>
                                 <Col><Text style={styles.col1}>Email: </Text></Col>
-                                <Col><Text style={styles.col2}>{this.values.email}</Text></Col>
+                                <Col><Text style={styles.col2}>{this.state.data.email}</Text></Col>
                             </Row>
                             <Row style={styles.row}>
                                 <Col><Text style={styles.col1}>Phone: </Text></Col>
-                                <Col><Text style={styles.col2}>{this.values.phone}</Text></Col>
+                                <Col><Text style={styles.col2}>{this.state.data.phone}</Text></Col>
                             </Row>
                             <Row style={styles.row}>
                                 <Col><Text style={styles.col1}>Password: </Text></Col>
-                                <Col><Text style={styles.col2}>{this.values.password}</Text></Col>
+                                <Col><Text style={styles.col2}>{this.state.data.password}</Text></Col>
                             </Row>
                             <Row style={styles.row}>
                                 <Col><Text style={styles.col1}>DOB: </Text></Col>
-                                <Col><Text style={styles.col2}>{this.values.dob}</Text></Col>
+                                <Col><Text style={styles.col2}>{this.state.data.dob}</Text></Col>
                             </Row>
                         </Grid>
                     </View>

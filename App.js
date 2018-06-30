@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
 import {createDrawerNavigator,createStackNavigator,DrawerItems} from 'react-navigation';
-import { Content, Header, Body, Container,Image } from 'native-base';
+import { Content, Header, Body, Container } from 'native-base';
 
 import {
   Platform,
   StyleSheet,
-  Text,
+  Text,Image,
   View,YellowBox
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
 // Pages
 import Main from './src/screens/main';
 import Login from './src/screens/login';
 import Signup from './src/screens/signup';
 import ForgotPassword from './src/screens/forgotPassword';
 import Profile from './src/screens/profile';
+import WebView from './src/screens/webview';
+import Lists from './src/screens/lists';
+import Apicall from './src/screens/apicall';
 
 YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated'])
 YellowBox.ignoreWarnings(['Warning: Module RCTImageLoader requires'])
@@ -30,17 +34,20 @@ export default class App extends Component {
 const CustomDrawerContentComponent = (props) => (
 
   <Container>
-    <Header style={styles.drawerHeader}>
-      <Body>
+    <Content>
+      <View style={styles.drawerHeader}>
         <Image
           style={styles.drawerImage}
-          source={require('./assets/1_XaGxIa_JuHc8YTR5Znv6tg.png')} />
-        <Text style={{fontSize:23,color:'#fff'}}>
+          source={require('./assets/logo.png')}
+          resizeMode
+        />
+      </View>
+      <View style={{backgroundColor:'#fff'}}> 
+        <Text style={{fontSize:23,color:'#ff9102'}}>
           Ravi K
+          <Icon name="check-circle" size={18} color="#009999" />
         </Text>
-      </Body>
-    </Header>
-    <Content>
+      </View>
       <DrawerItems style={{fontSize:30}} {...props} />
     </Content>
 
@@ -49,11 +56,14 @@ const CustomDrawerContentComponent = (props) => (
 );
 
 const Drawer = createDrawerNavigator({
-    Main:{screen:Main,}
+    Main:{screen:Main,navigationOptions:{
+      drawerLabel:()=>'Home'
+    }}
 },{
   initialRouteName:'Main',
   drawerPosition:'left',
-  // contentComponent:CustomDrawerContentComponent,
+  drawerBackgroundColor:'#e9e8ef',
+  contentComponent:CustomDrawerContentComponent,
   contentOptions:{
     activeTintColor:'#ff9102'
   }
@@ -65,7 +75,10 @@ const AppNavigator = createStackNavigator({
   Login:{screen:Login},
   Signup:{screen:Signup},
   ForgotPassword:{screen:ForgotPassword},
-  Profile:{screen:Profile}
+  Profile:{screen:Profile},
+  Webview:{screen:WebView},
+  Lists:{screen:Lists},
+  Apicall:{screen:Apicall}
 },{
   initialRouteKey:'Drawer',
   headerMode:'none'
@@ -73,13 +86,13 @@ const AppNavigator = createStackNavigator({
 
 const styles = StyleSheet.create({
   drawerHeader: {
-      height: 200,
-      backgroundColor: '#900C3F',
+      flex:1,
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      backgroundColor:'#fff'
   },
   drawerImage: {
-      height: 150,
-      width: 150,
-      borderRadius: 75,
-      marginLeft: 50,
+    flex:1,
+    marginTop: 30,
   }
 });
