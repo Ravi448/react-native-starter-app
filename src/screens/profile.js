@@ -5,13 +5,14 @@ import { Text, Container, Header, Left, Button, Body, Right, Content, Form, Item
 export default class Profile extends Component{
     constructor(props){
         super(props)
+        this.values = {}
     }
 
     componentWillMount(){
-        this.values = {}
         AsyncStorage.getItem('@user:creds',(e,s)=>{
             if(s)
                 this.values = JSON.parse(s);
+            console.log(this.values)
         });
     }
 
