@@ -1,5 +1,7 @@
 # react-native-starter-app
 
+<img src="startReact.gif" />
+
 <strong>
   This is a demo app demonstrating how to make an app using react-native. This is still in development and you can make pull     reaquests. Changes and suggestions are welcome.  
 </strong>
