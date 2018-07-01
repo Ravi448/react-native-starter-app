@@ -37,7 +37,7 @@ export default class Apicall extends Component{
         }
         return(
             <Container style={{backgroundColor:'#fff'}}>
-                <Header style={{backgroundColor:'#e6ecff'}}>
+                <Header style={{backgroundColor:'#e6ecff'}} androidStatusBarColor="#e3e9fc">
                     <Left>
                         <Button
                             transparent

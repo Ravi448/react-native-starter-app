@@ -29,7 +29,7 @@ export default class Profile extends Component{
         }
         return(
             <Container>
-                <Header style={{backgroundColor:'#e6ecff'}}>
+                <Header style={{backgroundColor:'#e6ecff'}} androidStatusBarColor="#e3e9fc">
                     <Left>
                         <Button
                             transparent
