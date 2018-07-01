@@ -91,7 +91,7 @@ export default class Main extends Component{
                                                 </CardItem>
                                             </Card>
                                         </Col>
-                                        <Col>
+                                        <Col onPress={()=>this.props.navigation.navigate('Maps')}>
                                             <Card style={styles.card}>
                                                 <CardItem style={styles.cardItem}>
                                                     <View>

@@ -19,6 +19,7 @@ import Profile from './src/screens/profile';
 import WebView from './src/screens/webview';
 import Lists from './src/screens/lists';
 import Apicall from './src/screens/apicall';
+import Maps from './src/screens/maps';
 
 YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated'])
 YellowBox.ignoreWarnings(['Warning: Module RCTImageLoader requires'])
@@ -39,7 +40,6 @@ const CustomDrawerContentComponent = (props) => (
         <Image
           style={styles.drawerImage}
           source={require('./assets/logo.png')}
-
         />
       </View>
       <View style={{backgroundColor:'#fff'}}> 
@@ -82,7 +82,8 @@ const AppNavigator = createStackNavigator({
   Profile:{screen:Profile},
   Webview:{screen:WebView},
   Lists:{screen:Lists},
-  Apicall:{screen:Apicall}
+  Apicall:{screen:Apicall},
+  Maps:{screen:Maps}
 },{
   initialRouteKey:'Drawer',
   headerMode:'none'
