@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {WebView,ScrollView, ActivityIndicator} from 'react-native';
+
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Text, Container, Header, Left, Button, Body, Right, Content} from 'native-base';
 export default class Maps extends Component{
@@ -11,7 +11,7 @@ export default class Maps extends Component{
     hideSpinner() {
         this.setState({ visible: false });
     }
-    
+
     render(){
         return(
             <Container style={{backgroundColor:'#fff'}}>

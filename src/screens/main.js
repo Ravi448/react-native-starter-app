@@ -105,7 +105,7 @@ export default class Main extends Component{
                                         </Col>
                                     </Row>
                                     <Row>
-                                        <Col>
+                                        <Col onPress={()=>this.props.navigation.navigate('Camera')}>
                                             <Card style={styles.card}>
                                                 <CardItem style={styles.cardItem} >
                                                     <View>
