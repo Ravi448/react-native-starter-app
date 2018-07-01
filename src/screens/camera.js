@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {WebView,ScrollView, ActivityIndicator,TouchableOpacity,StyleSheet} from 'react-native';
+import {TouchableOpacity,StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Text, Container, Header, Left, Button, Body, Right, Content,View} from 'native-base';
 import { RNCamera, FaceDetector } from 'react-native-camera';
@@ -10,15 +10,11 @@ export default class Camera extends Component{
         this.state = { visible: true };
     }
     
-    hideSpinner() {
-        this.setState({ visible: false });
-    }
-
     takePicture = async function() {
         if (this.camera) {
           const options = { quality: 0.5, base64: true };
           const data = await this.camera.takePictureAsync(options)
-          console.log(data.uri);
+          this.props.navigation.navigate('Picture',{url:data.uri})
         }
     };
     

@@ -21,6 +21,7 @@ import Lists from './src/screens/lists';
 import Apicall from './src/screens/apicall';
 import Maps from './src/screens/maps';
 import Camera from './src/screens/camera';
+import Picture from './src/screens/picture';
 
 YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated'])
 YellowBox.ignoreWarnings(['Warning: Module RCTImageLoader requires'])
@@ -85,7 +86,8 @@ const AppNavigator = createStackNavigator({
   Lists:{screen:Lists},
   Apicall:{screen:Apicall},
   Maps:{screen:Maps},
-  Camera:{screen:Camera}
+  Camera:{screen:Camera},
+  Picture:{screen:Picture}
 },{
   initialRouteKey:'Drawer',
   headerMode:'none'
