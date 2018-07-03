@@ -24,14 +24,14 @@ Run <code>react-native run-android</code><br/>
 To run on iOS, You must have to install Xcode on your mac.<br/>
 Run <code>rect-native run-ios</code>
 
-#Android build issue
+# Android build issue
 
 If you face issue to build in android due to camera component, please follow the steps to install camera component from <code>npm install react-native-camera --save</code>
 
 Then link the component to react native: <code>react-native link react-native-camera</code>
 
 Now:
-#Step 1
+# Step 1
 Navigate to <code>android/build.gradle</code> and add following code:
 
 <code>
@@ -39,7 +39,7 @@ Navigate to <code>android/build.gradle</code> and add following code:
   maven { url "https://maven.google.com" }
 </code>
 
-#Step 2
+# Step 2
 
 Navigate to <code>node_modules/react-native-camera/android/build.gradle</code> and remove or comment google()
 
@@ -61,7 +61,7 @@ Now your code will look like:
   }
 </code>
 
-#Step 3
+# Step 3
 Now at the bottom of the above build.gradle file:
 Change <code>compileOnly</code> to <code>provided</code> & <code>implementation</code> to <code>compile</code>
 
@@ -83,11 +83,11 @@ Now this will look like:
   }
 </code>
 
-#Step 3
+# Step 4
 
 Navigate to <code>android/app/build.gradle</code> and set compileSdkVersion 26
 
-#Step 4
+#Step 5
 Add 
 <code>
   project.ext.react = [
@@ -100,7 +100,7 @@ Add
 in build.gradle before line: <code>apply from: "../../node_modules/react-native/react.gradle"</code>
 
 
-#Step 5
+#Step 6
 Add <code><uses-permission android:name="android.permission.CAMERA" /></code> to AndroidManifest.xml
 
 <strong>
