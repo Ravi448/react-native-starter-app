@@ -24,6 +24,90 @@ Run <code>react-native run-android</code><br/>
 To run on iOS, You must have to install Xcode on your mac.<br/>
 Run <code>rect-native run-ios</code>
 
+#Android build issue
+
+If you face issue to build in android due to camera component, please follow the steps to install camera component from <code>npm install react-native-camera --save</code>
+
+Then link the component to react native: <code>react-native link react-native-camera</code>
+
+Now:
+#Step 1
+Navigate to <code>android/build.gradle</code> and add following code:
+
+<code>
+  maven { url "https://jitpack.io" }
+  maven { url "https://maven.google.com" }
+</code>
+
+#Step 2
+
+Navigate to <code>node_modules/react-native-camera/android/build.gradle</code> and remove or comment google()
+
+Now your code will look like: 
+
+<code>
+  buildscript {
+    repositories {
+      jcenter()
+      // google()
+      maven {
+        url 'https://maven.google.com'
+      }
+    }
+
+    dependencies {
+      classpath 'com.android.tools.build:gradle:3.0.0'
+    }
+  }
+</code>
+
+#Step 3
+Now at the bottom of the above build.gradle file:
+Change <code>compileOnly</code> to <code>provided</code> & <code>implementation</code> to <code>compile</code>
+
+Now this will look like:
+
+<code>
+  dependencies {
+    def googlePlayServicesVersion = rootProject.hasProperty('googlePlayServicesVersion')  ? rootProject.googlePlayServicesVersion : DEFAULT_GOOGLE_PLAY_SERVICES_VERSION
+    def supportLibVersion = rootProject.hasProperty('supportLibVersion')  ? rootProject.supportLibVersion : DEFAULT_SUPPORT_LIBRARY_VERSION
+
+    provided 'com.facebook.react:react-native:+'
+    provided 'com.facebook.infer.annotation:infer-annotation:+'
+    compile "com.google.zxing:core:3.2.1"
+    compile "com.drewnoakes:metadata-extractor:2.9.1"
+    compile "com.google.android.gms:play-services-vision:$googlePlayServicesVersion"
+    compile "com.android.support:exifinterface:$supportLibVersion"
+    compile "com.android.support:support-annotations:$supportLibVersion"
+    compile "com.android.support:support-v4:$supportLibVersion"
+  }
+</code>
+
+#Step 3
+
+Navigate to <code>android/app/build.gradle</code> and set compileSdkVersion 26
+
+#Step 4
+Add 
+<code>
+  project.ext.react = [
+    entryFile: "index.js",
+    bundleAssetName: "index.android.bundle",
+    bundleInAlpha: true,
+    bundleInBeta: true
+]
+</code>
+in build.gradle before line: <code>apply from: "../../node_modules/react-native/react.gradle"</code>
+
+
+#Step 5
+Add <code><uses-permission android:name="android.permission.CAMERA" /></code> to AndroidManifest.xml
+
+<strong>
+  By following these steps, you can solve android build issue.
+</strong>
+
+If you still face any issue, please add an issue.
 
 
 <br/>
