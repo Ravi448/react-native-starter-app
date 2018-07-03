@@ -87,7 +87,7 @@ Now this will look like:
 
 Navigate to <code>android/app/build.gradle</code> and set compileSdkVersion 26
 
-#Step 5
+# Step 5
 Add 
 <code>
   project.ext.react = [
@@ -100,7 +100,7 @@ Add
 in build.gradle before line: <code>apply from: "../../node_modules/react-native/react.gradle"</code>
 
 
-#Step 6
+# Step 6
 Add <code><uses-permission android:name="android.permission.CAMERA" /></code> to AndroidManifest.xml
 
 <strong>
