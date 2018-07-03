@@ -99,10 +99,6 @@ Add
 </code>
 in build.gradle before line: <code>apply from: "../../node_modules/react-native/react.gradle"</code>
 
-
-# Step 6
-Add <uses-permission android:name="android.permission.CAMERA" />  to AndroidManifest.xml
-
 <strong>
   By following these steps, you can solve android build issue.
 </strong>
